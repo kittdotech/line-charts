@@ -1,6 +1,5 @@
-Line charts are bread and butter of visualization. Here we test out libraries and methods for making them.
+## README
 
-* plotly
-* d3
-* ...
+Simple line grap views for different time series data, using [Plotly](https://plot.ly/)
+
 

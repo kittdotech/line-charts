@@ -1,0 +1,45 @@
+<html>
+<script type="text/javascript" src="vendor/plotly-latest.min.js"></script>
+<script>
+Plotly.d3.csv('https://raw.githubusercontent.com/kittdotech/line-charts/master/data/vix-daily.csv', function(rows){
+    var trace = {
+      type: 'scatter',                    // set the chart type
+      mode: 'lines',                      // connect points with lines
+      x: rows.map(function(row){          // set the x-data
+        return row['Time'];
+      }),
+      y: rows.map(function(row){          // set the x-data
+        return row['10 Min Sampled Avg'];
+      }),
+      line: {                             // set the width of the line.
+        width: 1
+      },
+      error_y: {
+        array: rows.map(function(row){    // set the height of the error bars
+          return row['10 Min Std Dev'];
+        }),
+        thickness: 0.5,                   // set the thickness of the error bars
+        width: 0
+      }
+    };
+
+    var layout = {
+      yaxis: {title: ""},       // set the y axis title
+      xaxis: {
+        showgrid: false,                  // remove the x-axis grid lines
+        tickformat: "%B, %Y"              // customize the date format to "month, day"
+      },
+      margin: {                           // update the left, bottom, right, top margin
+        l: 40, b: 40, r: 40, t: 40
+      }
+    };
+
+    Plotly.plot(document.getElementById('chart'), [trace], layout, {showLink: false});
+});
+</script>
+<body>
+<div id="chart" style="width:600px;height:300px;"></div>
+</body>
+</html>
+
+
